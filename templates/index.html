@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        background-color: black;
+    }
+
+    .navbar {
+        background-color: #333; /* Couleur de fond */
+        border-color: #333; /* Couleur de la bordure */
+    }
+
+    .navbar-brand, .nav>li>a {
+        color: white; /* Couleur du texte */
+    }
+
+    .navbar-nav>li>a:hover {
+        color: #ffcc00; /* Couleur du texte au survol */
+        background-color: #555; /* Couleur de fond au survol */
+    }
+
+    .text-white {
+        color: white;
+    }
+
+    /* Nouveau style pour les cartes */
+    .card {
+        padding-top: 3px;
+        margin-top: 3px;
+        border-radius: 15px; /* Bordure arrondie */
+        margin-bottom: 20px; /* Espacement entre les cartes */
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%; /* Ajuste la hauteur pour occuper tout l'espace vertical */
+        position: relative;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.5); /* Bordure blanche avec une ombre */
+        box-shadow: 0 0 10px rgba(250, 227, 227, 0.5); /* Ombre blanche */
+    }
+
+    .card:hover {
+        transform: scale(1.05); /* Légère agrandissement au survol */
+    }
+
+    .card-body {
+        text-align: center; /* Centrer le contenu à l'intérieur de la carte */
+        flex-grow: 1; /* Fait en sorte que le contenu occupe tout l'espace vertical disponible */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .card img {
+        max-width: 100%; /* Pour assurer que l'image ne dépasse pas la largeur de la carte */
+        border-top-left-radius: 15px; /* Arrondir le coin supérieur gauche de l'image */
+        border-top-right-radius: 15px; /* Arrondir le coin supérieur droit de l'image */
+    }
+
+    .card-title {
+        font-size: 1.2em; /* Ajuster la taille du titre */
+        margin-bottom: 0.5em; /* Ajuster l'espacement sous le titre */
+        color: white; /* Couleur du texte */
+    }
+
+    .card-author {
+        font-size: 1em; /* Ajuster la taille de l'auteur */
+        color: #888; /* Couleur du texte de l'auteur */
+    }
+</style>
+<body>
+
+    <nav class="navbar">
+        <a class="navbar-brand">My Book Recommender</a>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/recommend">Recommend</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-white" style="font-size:50px; color: #ffcc00;">Top 50 Books</h1>
+            </div>
+            
+
+            {% for i in range(book_name|length) %}
+                <div class="col-md-4" style="margin-top:20px">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                        <div class="card-body">
+                            <p class="card-title">{{ book_name[i] }}</p>
+                            <h4 class="card-author">{{ author[i] }}</h4>
+                            <h4 class="text-white">Votes - {{ votes[i] }}</h4>
+                            <h4 class="text-white">Rating - {{ rating[i] }}</h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
